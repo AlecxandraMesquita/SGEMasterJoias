@@ -53,5 +53,6 @@ public class Funcionario extends Model<Funcionario>{
 	@Override
 	public void setId(Integer id) {
 		this.id = id;
-	}
+}
+
 }
