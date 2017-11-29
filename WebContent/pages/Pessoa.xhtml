@@ -1,0 +1,106 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<center>
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		<p:panel id="panel" header="Cadastro de Pessoa">
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+				<p:inputText value="#{pessoaController.entity.nome}" placeholder="Nome"/>
+				
+				<p:inputText value="#{pessoaController.entity.telefone}" placeholder="Telefone"/>
+				
+				<p:inputText value="#{pessoaController.entity.email}" placeholder="email"/>
+				
+				<p:inputText value="#{pessoaController.entity.rg}" placeholder="RG"/>
+				
+				<p:inputMask value="#{pessoaController.entity.cpf}" placeholder="CPF" mask="999.999.999-99"/>
+				
+				<p:selectOneMenu id="Tipo"
+					value="#{pessoaController.entity.tipo}">
+					<f:selectItem itemLabel="Tipo" itemValue="" />
+					<f:selectItems value="#{pessoaController.tipo}"
+						var="t" itemValue="#{t}" itemLabel="#{t.nome}"  />
+				</p:selectOneMenu> 
+								
+			</p:panelGrid>
+		<br/>
+			
+			<p:commandButton value="Incluir" 
+				actionListener="#{pessoaController.insert}" 
+				disabled="#{pessoaController.entity.id != null}"
+				process="panel" update="form" />
+			
+			<p:commandButton value="Alterar" 
+				actionListener="#{pessoaController.update}" 
+				disabled="#{pessoaController.entity.id == null}"
+				process="panel" update="form" />
+	
+			<p:commandButton value="Excluir" 
+				actionListener="#{pessoaController.delete}" 
+				disabled="#{pessoaController.entity.id == null}"	
+				process="panel" update="form" />
+			
+			<p:commandButton value="Limpar" icon="" 
+				actionListener="#{pessoaController.clean}" 
+				process="panel" update="form" />
+				
+		</p:panel>
+					
+		<br/>
+		<p:separator id="separator" />
+		<br/>
+		
+		<p:dataTable id="dataTable" value="#{pessoaController.listaPessoa}" var="objeto" widgetVar="dataTableWV" >	
+			<p:column>
+				<f:facet name="header">Id</f:facet>
+	    				#{objeto.id}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Nome</f:facet>
+	    				#{objeto.nome}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Telefone</f:facet>
+	    				#{objeto.telefone}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">CPF</f:facet>
+	    				#{objeto.cpf}
+	    		</p:column>
+	    	
+	    	<p:column>
+				<f:facet name="header">RG</f:facet>
+	    				#{objeto.rg}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">E-mail</f:facet>
+	    				#{objeto.email}
+	    		</p:column>
+    			<p:column>
+					<f:facet name="header">Tipo de Pessoa</f:facet>
+   						#{objeto.tipoPessoa.nome}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Ação</f:facet>
+				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
+					<f:setPropertyActionListener
+						target="#{pessoaController.entity}" value="#{objeto}" />
+				</p:commandButton>
+			</p:column>
+	    		
+		</p:dataTable>
+	
+	</h:form>
+</center>	
+</f:view>
+
+</ui:define>
+</ui:composition>

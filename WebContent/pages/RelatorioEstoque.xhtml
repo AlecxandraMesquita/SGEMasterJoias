@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<center>
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+	    	
+	    	<p:panel id="panel" header="Relatório de Estoque">
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+												
+			</p:panelGrid>
+
+			<br/>
+			
+			</p:panel>
+					
+		<br/><p:separator id="separator" /><br/>
+
+		<p:dataTable id="dataTable" value="#{produtoController.listaProduto}" var="objeto" widgetVar="dataTableWV" >	
+			<p:column>
+				<f:facet name="header">Id</f:facet>
+	    				#{objeto.id}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Nome</f:facet>
+	    				#{objeto.nome}
+	    		</p:column>
+	    		<p:column>
+					<f:facet name="header">Descrição</f:facet>
+	    				#{objeto.descricao}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Tipo de Produto</f:facet>
+	    				#{objeto.tipoProduto.nome}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Material</f:facet>
+	    				#{objeto.material.nome}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Marca</f:facet>
+	    				#{objeto.marca.nome}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Estoque Antigo</f:facet>
+	    				#{objeto.precoCusto}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Ajuste de Etoqueo</f:facet>
+	    				#{objeto.precoVenda}
+	    		</p:column>
+	    	
+	    	<p:column>
+				<f:facet name="header">Data do Ajuste</f:facet>
+	    				#{objeto.descricao}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Motivo do Ajuste</f:facet>
+	    				#{objeto.ajusteEstoque}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Valor de Entrada</f:facet>
+	    				#{objeto.material}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Valor de Saida</f:facet>
+	    				#{objeto.marca}
+	    		</p:column>			
+	    	
+			<!--  p:column >
+				<f:facet name="header">Ação</f:facet>
+				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
+					<f:setPropertyActionListener
+						target="#{produtoController.entity}" value="#{objeto}" />
+				</p:commandButton>
+			</p:column>  -->
+	    		
+		</p:dataTable>
+	
+	</h:form>
+</center>	
+</f:view>
+
+</ui:define>
+</ui:composition>

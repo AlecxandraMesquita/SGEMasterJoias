@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<div class="menu">
+		<h:form>
+			<p:menu toggleable="true">
+				<p:menuitem value="Menu"  ajax="false" action="/pages/dashboard.xhtml"
+					icon="ui-icon-disk" />
+					
+				<p:submenu label="Pessoas">
+					<p:menuitem value="Cadastrar" icon="ui-icon-disk" action="/pages/Pessoa.xhtml"/>
+					<p:menuitem value="Funcionario" icon="ui-icon-disk" action="/pages/funcionario.xhtml"/>
+					<p:menuitem value="Cliente" icon="ui-icon-disk" />
+				</p:submenu>
+				
+				<p:submenu label="Produtos">
+					<p:menuitem value="Gerenciar" ajax="false" icon="ui-icon-disk"
+						action="/pages/Produto.xhtml" />
+					<p:menuitem value="Marca" icon="ui-icon-disk" action="/pages/Marca.xhtml" />
+					<p:menuitem value="Tipo" icon="ui-icon-disk" action="/pages/TipoProduto.xhtml" />
+				</p:submenu>
+				
+				<p:submenu label="Estoque">
+					<p:menuitem value="Entrada" ajax="false" icon="ui-icon-disk" />
+					<p:menuitem value="Ajuste de Estoque" ajax="false" icon="ui-icon-disk" 
+					action="/pages/AjusteEstoque.xhtml" />
+					<p:menuitem value="Relatóri de Estoque" ajax="false" icon="ui-icon-disk" 
+					action="/pages/RelatorioEstoque.xhtml"/>
+					<p:menuitem value="Novo" ajax="false"
+						action="/pages/Produto.xhtml" icon="ui-icon-disk" />
+				</p:submenu>
+				
+				<p:submenu label="Venda">
+					<p:menuitem value="Gerenciar" ajax="false" icon="ui-icon-disk" />
+					<p:menuitem value="Nova Venda" ajax="false"/>
+					<p:menuitem value="Relatório" ajax="false"
+						action="/pages/Produto.xhtml"
+						icon="ui-icon-disk" />
+				</p:submenu>
+			</p:menu>
+
+		</h:form>
+	</div>
+
+
+
+
+
+</ui:composition>

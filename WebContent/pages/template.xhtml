@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Master Jóias</title>
+</h:head>
+<h:body>
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage name="/images/ajaxloading.gif" />
+	</p:dialog>
+
+	<p:layout id="layout" fullPage="true">
+
+		<p:layoutUnit position="north">
+			<ui:insert name="cabecalho">
+				<center>
+					<h1 class="nome-do-sistema">Sistema Master Jóias</h1>
+				</center>
+			</ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200">
+			<ui:include src="menu.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<ui:insert name="conteudo" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="30">
+			<p class="rodape-text">2017 © MASTER JÓIAS. Todos os direitos
+				reservados</p>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>

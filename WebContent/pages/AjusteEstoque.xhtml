@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<center>
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+		<p:panel id="panel" header="Ajuste de Estoque">
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+				<p:selectOneMenu id = "EstoqueAntigo"
+				value="#{selectOneMenu.estoqueAntigo}">
+					<f:selectItem itemLabel="Estoque Antigo"/>
+				</p:selectOneMenu>
+				
+				<p:selectOneMenu id = "TipoAjuste"
+				value="#{ajusteEstoqueController.entity.tipoAjuste}">
+				<f:selectItem itemLabel="Tipo de Ajuste" itemValue="" />
+				<f:selectItems value="#{ajusteEstoqueController.tipoAjuste}" var="t"
+									itemValue="#{t}" itemLabel="#{t.nome}" />				
+				</p:selectOneMenu>
+				
+				<p:inputText value="#{ajusteEstoqueController.entity.ajusteEntoque}" placeholder="Ajuste Estoque"/>
+				<p:inputText value="#{ajusteEstoqueController.entity.dataAjuste}" placeholder="Data do Ajuste"/>
+				<p:inputText value="#{ajusteEstoqueController.entity.motivoAjuste}" placeholder="Motivo do Ajuste"/>	
+			</p:panelGrid>
+			<br/>
+				<p:commandButton value="Incluir" 
+				actionListener="#{produtoController.insert}" 
+				disabled="#{produtoController.entity.id != null}"
+				process="panel" update="form" />
+				
+				<p:commandButton value="Alterar" 
+				actionListener="#{produtoController.update}" 
+				disabled="#{produtoController.entity.id == null}"
+				process="panel" update="form" />
+	
+			<p:commandButton value="Excluir" 
+				actionListener="#{produtoController.delete}" 
+				disabled="#{produtoController.entity.id == null}"	
+				process="panel" update="form" />
+			
+			<p:commandButton value="Limpar" icon="" 
+				actionListener="#{produtoController.clean}" 
+				process="panel" update="form" />
+				
+				<br/><p:separator id="separator" /><br/>
+				<p:dataTable id="dataTable" value="#{AjusteEstoqueController.listaAjusteEstoque}" var="objeto" widgetVar="dataTableWV" >
+					<p:column>
+				<f:facet name="header">Id</f:facet>
+	    				#{objeto.id}
+	    		</p:column>
+			<p:column >
+				<f:facet name="header">Nome</f:facet>
+	    				#{objeto.nome}
+	    		</p:column>
+	    		<p:column>
+				<f:facet name="header">Estoque Antigo</f:facet>
+	    				#{objeto.estoqueAntigo}
+	    		</p:column>
+	    		<p:column>
+				<f:facet name="header">Tipo de Ajuste</f:facet>
+	    				#{objeto.tipoAjuste}
+	    		</p:column>
+	    		<p:column>
+	    	
+				<f:facet name="header">Ajuste de Etoque</f:facet>
+	    				#{objeto.ajusteEntoque}
+	    		</p:column>
+	    	
+	    	<p:column>
+				<f:facet name="header">Data do Ajuste</f:facet>
+	    				#{objeto.dataAjuste}
+	    		</p:column>
+	    		<p:column>
+				<f:facet name="header">Motivo do Ajuste</f:facet>
+	    				#{objeto.motivoAjuste}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Valor de Entrada</f:facet>
+	    				#{objeto.valorEntrada}
+	    		</p:column>
+	    	<p:column>
+				<f:facet name="header">Valor de Saida</f:facet>
+	    				#{objeto.valorSaida}
+	    		</p:column>	
+	    		
+	    		<p:column >
+				<f:facet name="header">Ação</f:facet>
+				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
+					<f:setPropertyActionListener
+						target="#{produtoController.entity}" value="#{objeto}" />
+				</p:commandButton>
+			</p:column>
+				</p:dataTable>	
+		</p:panel>
+	</h:form>
+</center>	
+</f:view>
+
+</ui:define>
+</ui:composition>
