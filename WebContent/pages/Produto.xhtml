@@ -1,0 +1,128 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+	<ui:define name="conteudo">
+
+		<f:view>
+			<center>
+
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+					<p:panel id="panel" header="Gerenciamento de Produto">
+						<p:panelGrid id="pgDados" columns="2" styleClass="semBorda">
+							<p:inputText value="#{produtoController.entity.nome}"
+								placeholder="Nome" />
+
+							<p:inputText value="#{produtoController.entity.precoCusto}"
+								placeholder="Preco de Custo" />
+							
+							<p:inputText value="#{produtoController.entity.precoVenda}"
+								placeholder="Preco de Venda" />
+
+							<p:inputText value="#{produtoController.entity.descricao}"
+								placeholder="Descrição" />							
+							
+							<p:selectOneMenu
+								value="#{produtoController.entity.tipoProduto}">
+								<f:converter converterId="tipoProdutoConverter" />
+								<f:selectItem itemLabel="Tipo Produto" />
+								<f:selectItems value="#{produtoController.listaTipoProduto}"
+									var="t" itemLabel="#{t.nome}" itemValue="#{t}" />
+							</p:selectOneMenu>
+							
+							<p:selectOneMenu
+								value="#{produtoController.entity.marca}">
+								<f:converter converterId="marcaConverter" />
+								<f:selectItem itemLabel="Marca" />
+								<f:selectItems value="#{produtoController.listaMarca}"
+									var="f" itemLabel="#{f.nome}" itemValue="#{f}" />
+							</p:selectOneMenu>
+							
+							<p:selectOneMenu id="Material"
+								value="#{produtoController.entity.material}">
+								<f:selectItem itemLabel="Material" itemValue="" />
+								<f:selectItems value="#{produtoController.material}" var="m"
+									itemValue="#{m}" itemLabel="#{m.nome}" />
+							</p:selectOneMenu>
+							
+						</p:panelGrid>
+						<br />
+						<p:commandButton value="Incluir"
+							actionListener="#{produtoController.insert}"
+							disabled="#{produtoController.entity.id != null}" process="panel"
+							update="form" />
+							
+							<p:commandButton value="Alterar"
+							actionListener="#{produtoController.update}"
+							disabled="#{produtoController.entity.id == null}" process="panel"
+							update="form" />
+
+						<p:commandButton value="Excluir"
+							actionListener="#{produtoController.delete}"
+							disabled="#{produtoController.entity.id == null}" process="panel"
+							update="form" />
+
+						<p:commandButton value="Limpar" icon=""
+							actionListener="#{produtoController.clean}" process="panel"
+							update="form" />
+					</p:panel>					
+					<br />
+					<p:separator id="separator" />
+					<br />
+					
+					<p:dataTable  id="dataTable" value="#{produtoController.listaProduto}" var="objeto"
+						widgetVar="dataTableWV" >
+						
+						<p:column>
+							<f:facet name="header">Id</f:facet>
+	    				#{objeto.id}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Nome</f:facet>
+	    				#{objeto.nome}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Preço de Custo</f:facet>
+	    				#{objeto.precoCusto}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Preço de Venda</f:facet>
+	    				#{objeto.precoVenda}
+	    		</p:column>
+
+						<p:column>
+							<f:facet name="header">Descrição</f:facet>
+	    				#{objeto.descricao}
+	    		</p:column>
+					
+					<p:column>
+							<f:facet name="header">Tipo de Produto</f:facet>
+	    				#{objeto.tipoProduto.nome}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Material</f:facet>
+	    				#{objeto.material.nome}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Marca</f:facet>
+	    				#{objeto.marca.nome}
+	    		</p:column>
+					
+					<p:column>
+							<f:facet name="header">Ação</f:facet>
+							<p:commandButton value="Editar" update="form" icon="fa fa-bug">
+								<f:setPropertyActionListener
+									target="#{produtoController.entity}" value="#{objeto}" />
+							</p:commandButton>
+						</p:column>
+						
+					</p:dataTable>
+				</h:form>
+			</center>
+		</f:view>
+
+	</ui:define>
+</ui:composition>
