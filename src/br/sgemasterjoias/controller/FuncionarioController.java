@@ -8,6 +8,7 @@ import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
 import br.sgemasterjoias.factory.JPAFactory;
+import br.sgemasterjoias.list.controller.FuncionarioListController;
 import br.sgemasterjoias.list.controller.PessoaListController;
 import br.sgemasterjoias.model.Funcionario;
 import br.sgemasterjoias.model.Pessoa;
@@ -17,6 +18,7 @@ import br.sgemasterjoias.validation.FuncionarioValidation;
 import br.unitins.frame.application.SelectionListener;
 import br.unitins.frame.controller.Controller;
 import br.unitins.frame.validation.Validation;
+
 
 @ManagedBean
 @ViewScoped
@@ -96,5 +98,21 @@ public class FuncionarioController extends Controller<Funcionario>{
 			}
 		});
 	}
+	
+//	public void abrirListFuncionario(ActionEvent actionEvent) {
+//		FuncionarioListController list = new FuncionarioListController();
+//		list.openList(new SelectionListener<Pessoa>() {
+//			@Override
+//			public void select(Funcionario entity) {
+//				FuncionarioRepository repository = new FuncionarioRepository(JPAFactory.getEntityManager());
+//				funcionario = repository.bucarPessoa(entity.getId());
+//				//consulta de funcionario que passa como parametro o id da pessoa e retorna um funcionario
+//				 if (funcionario != null)
+//						setEntity(funcionario);
+//				else
+//				  	getEntity().setPessoa(entity);
+//			}
+//		});
+//	}
 	
 }

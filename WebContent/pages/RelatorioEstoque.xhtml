@@ -24,7 +24,7 @@
 					
 		<br/><p:separator id="separator" /><br/>
 
-		<p:dataTable id="dataTable" value="#{produtoController.listaProduto}" var="objeto" widgetVar="dataTableWV" >	
+		<p:dataTable id="dataTable" value="#{estoqueController.listaProduto}" var="objeto" widgetVar="dataTableWV" >	
 			<p:column>
 				<f:facet name="header">Id</f:facet>
 	    				#{objeto.id}
@@ -75,14 +75,6 @@
 	    				#{objeto.marca}
 	    		</p:column>			
 	    	
-			<!--  p:column >
-				<f:facet name="header">Ação</f:facet>
-				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
-					<f:setPropertyActionListener
-						target="#{produtoController.entity}" value="#{objeto}" />
-				</p:commandButton>
-			</p:column>  -->
-	    		
 		</p:dataTable>
 	
 	</h:form>

@@ -13,6 +13,8 @@
 		<class>br.sgemasterjoias.model.TipoProduto</class>
 		<class>br.sgemasterjoias.model.Marca</class>
 		<class>br.sgemasterjoias.model.AjusteEstoque</class>
+		<class>br.sgemasterjoias.model.EntradaEstoque</class>
+		<class>br.sgemasterjoias.model.ItemEntradaEstoque</class>
 		
 		<shared-cache-mode>NONE</shared-cache-mode>
 

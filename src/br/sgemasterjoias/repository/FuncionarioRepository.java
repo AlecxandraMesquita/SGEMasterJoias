@@ -33,15 +33,28 @@ public class FuncionarioRepository extends Repository<Funcionario>{
 		return lista;
 		
 	}
-	
+	public List<Funcionario> bucarFuncionarios(String nome) {
+			
+			Query query = geEntityManager().createQuery("SELECT f FROM Funcionario f WHERE f.pessoa.nome LIKE ?1 ORDER BY f.pessoa.nome");
+			query.setParameter(1, "%"+nome+"%");
+			List<Funcionario> lista = query.getResultList();
+			
+			if (lista == null)
+				lista = new ArrayList<Funcionario>();
+			
+			return lista;
+	}
 	public Funcionario bucarPessoa(Integer id) {
 
-		Query query = geEntityManager().createQuery("SELECT f FROM Funcionario f WHERE f LIKE ?1 ORDER BY f.pessoa.id Desc");
-		query.setParameter(1, "%" + id + "%");
-		Funcionario funcionario = (Funcionario) query.getSingleResult();
+		Query query = geEntityManager().createQuery("SELECT f FROM Funcionario f WHERE f.pessoa.id = ?1 ");
+		query.setParameter(1, id);
+		Funcionario funcionario = null;
+		try {
+			funcionario = (Funcionario) query.getSingleResult();	
+		} catch (javax.persistence.NoResultException exception) {
+			
+		}
 
-		if (funcionario == null)
-			funcionario = new Funcionario();
 		return funcionario;
 	}
 

@@ -95,10 +95,10 @@ public class ProdutoController extends Controller<Produto>{
 
 	public void setListaMarca(List<Marca> listaMarca) {
 		this.listaMarca = listaMarca;
-}
-	
-	
+	}
+
 	public MaterialProduto[] getMaterial(){
 		return MaterialProduto.values();
     }
+	
 }

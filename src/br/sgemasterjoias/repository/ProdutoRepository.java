@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.sgemasterjoias.model.Produto;
+import br.sgemasterjoias.model.Produto;
+import br.sgemasterjoias.model.Produto;
 import br.unitins.frame.repository.Repository;
 
 public class ProdutoRepository extends Repository<Produto> {
@@ -31,6 +33,31 @@ public class ProdutoRepository extends Repository<Produto> {
 
 		return lista;
 
+	}
+	public List<Produto> bucarProdutos(String nome) {
+
+		Query query = geEntityManager().createQuery("SELECT p FROM Produto p WHERE p.nome LIKE ?1 ORDER BY p.nome");
+		query.setParameter(1, "%" + nome + "%");
+		List<Produto> lista = query.getResultList();
+
+		if (lista == null)
+			lista = new ArrayList<Produto>();
+
+		return lista;
+	}
+	
+	public Produto bucarItem(Integer id) {
+
+		Query query = geEntityManager().createQuery("SELECT p FROM Produto p WHERE p.item.id = ?1 ");
+		query.setParameter(1, id);
+		Produto produto = null;
+		try {
+			produto = (Produto) query.getSingleResult();	
+		} catch (javax.persistence.NoResultException exception) {
+			
+		}
+
+		return produto;
 	}
 
 }

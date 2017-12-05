@@ -4,104 +4,55 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
 
-<ui:define name="conteudo">
-
-	<f:view>
-	<center>
-
-	<h:form id="form">
-		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
-		<p:panel id="panel" header="Cadastro de Funcionário">
-			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda">
-								
-				<!-- p:selectOneMenu id="Pessoa"
-					value="#{funcionarioController.entity.pessoa}">
-					<f:converter converterId="pessoaConverter" />
-					<f:selectItem itemLabel="Pessoa" />
-					<f:selectItems value="#{funcionarioController.listaPessoa}"
-						var="p" itemValue="#{p}" itemLabel="#{p.nome}"  />
-				</p:selectOneMenu -->
-				 
-					<p:commandLink value="Nome:"
-						actionListener="#{funcionarioController.abrirListPessoa}">
-						<p:ajax event="dialogReturn" update="form" />
-					</p:commandLink>
-					
-				<!-- p:inputText value="#{funcionarioController.entity.senha}" placeholder="Senha"/>
-
-				<p:inputText value="#{funcionarioController.entity.salario}" placeholder="Salario"/-->
-			</p:panelGrid>
-			<br/>
-			
-			<p:commandButton value="Incluir" 
-				actionListener="#{funcionarioController.insert}" 
-				disabled="#{funcionarioController.entity.id != null}"
-				process="panel" update="form" />
-			
-			<p:commandButton value="Alterar" 
-				actionListener="#{funcionarioController.update}" 
-				disabled="#{funcionarioController.entity.id == null}"
-				process="panel" update="form" />
+	<ui:define name="conteudo">
 	
-			<p:commandButton value="Excluir" 
-				actionListener="#{funcionarioController.delete}" 
-				disabled="#{funcionarioController.entity.id == null}"	
-				process="panel" update="form" />
-			
-			<p:commandButton value="Limpar" icon="" 
-				actionListener="#{funcionarioController.clean}" 
-				process="panel" update="form" />
-		</p:panel>
-			<br/>
-		<p:separator id="separator" />
-		<br/>
-		<p:dataTable id="dataTable"  value="#{funcionarioController.listaFuncionario}" var="objeto" widgetVar="dataTableWV" >
-			<p:column>
-				<f:facet name="header">Id</f:facet>
-	    				#{objeto.id}
-	    		</p:column>
-				<p:column >
-					<f:facet name="header">Nome</f:facet>
-		    				#{objeto.pessoa.nome}
-		    		</p:column>
-		    	<p:column>
-					<f:facet name="header">Telefone</f:facet>
-		    				#{objeto.pessoa.telefone}
-		    		</p:column>
-		    	<p:column>
-					<f:facet name="header">CPF</f:facet>
-		    				#{objeto.pessoa.cpf}
-		    		</p:column>
-		    	
-		    	<p:column>
-					<f:facet name="header">RG</f:facet>
-		    				#{objeto.pessoa.rg}
-		    		</p:column>
-		    	<p:column>
-					<f:facet name="header">E-mail</f:facet>
-		    				#{objeto.pessoa.email}
-			    		</p:column>
-		    		<p:column>
-						<f:facet name="header">Salário</f:facet>
-	   						#{objeto.salario}
-		    		</p:column>
-	    			<p:column>
-						<f:facet name="header">Senha</f:facet>
-	   						#{objeto.senha}
-		    		</p:column>
-		    		<p:column >
-				<f:facet name="header">Ação</f:facet>
-				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
-					<f:setPropertyActionListener
-						target="#{pessoaController.entity}" value="#{objeto}" />
-				</p:commandButton>
-			</p:column>
-			
-		</p:dataTable>
+		<f:view>
+			<center>
 		
-	</h:form>
-</center>	
-</f:view>
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+					
+					<p:panel id="panel" header="Cadastro de Funcionário">
+						<p:panelGrid id="pgDados" columns="2" styleClass="semBorda">
+																	 
+							<p:commandLink value="Nome:"
+								actionListener="#{funcionarioController.abrirListPessoa}">
+								<p:ajax event="dialogReturn" update="form" />
+							</p:commandLink>
 
-</ui:define>
+							<p:inputText value="#{funcionarioController.entity.pessoa.nome}" placeholder="Nome" disabled="true"/>
+							
+							<p:inputText value="#{funcionarioController.entity.senha}" placeholder="Senha"/>
+			
+							<p:inputText value="#{funcionarioController.entity.salario}" placeholder="Salario"/>
+						</p:panelGrid>
+						<br/>
+						
+						<p:commandButton value="Incluir" 
+							actionListener="#{funcionarioController.insert}" 
+							disabled="#{funcionarioController.entity.id != null}"
+							process="panel" update="form" />
+						
+						<p:commandButton value="Alterar" 
+							actionListener="#{funcionarioController.update}" 
+							disabled="#{funcionarioController.entity.id == null}"
+							process="panel" update="form" />
+				
+						<p:commandButton value="Excluir" 
+							actionListener="#{funcionarioController.delete}" 
+							disabled="#{funcionarioController.entity.id == null}"	
+							process="panel" update="form" />
+						
+						<p:commandButton value="Limpar" icon="" 
+							actionListener="#{funcionarioController.clean}" 
+							process="panel" update="form" />
+					</p:panel>
+						<br/>
+					<p:separator id="separator" />
+					<br/>
+					
+				</h:form>
+			</center>	
+		</f:view>
+	</ui:define>
 </ui:composition>

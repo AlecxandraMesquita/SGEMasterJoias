@@ -13,7 +13,7 @@
 				<p:submenu label="Pessoas">
 					<p:menuitem value="Cadastrar" icon="ui-icon-disk" action="/pages/Pessoa.xhtml"/>
 					<p:menuitem value="Funcionario" icon="ui-icon-disk" action="/pages/funcionario.xhtml"/>
-					<p:menuitem value="Cliente" icon="ui-icon-disk" />
+					<p:menuitem value="Cliente" action="/pages/cliente.xhtml" icon="ui-icon-disk" />
 				</p:submenu>
 				
 				<p:submenu label="Produtos">
@@ -24,7 +24,8 @@
 				</p:submenu>
 				
 				<p:submenu label="Estoque">
-					<p:menuitem value="Entrada" ajax="false" icon="ui-icon-disk" />
+					<p:menuitem value="Entrada" ajax="false" icon="ui-icon-disk" action="/pages/entradaEstoque.xhtml"  />
+					<p:menuitem value="Cadastrar Item " ajax="false" icon="ui-icon-disk" action="/pages/ItemEntrada.xhtml" />
 					<p:menuitem value="Ajuste de Estoque" ajax="false" icon="ui-icon-disk" 
 					action="/pages/AjusteEstoque.xhtml" />
 					<p:menuitem value="Relatóri de Estoque" ajax="false" icon="ui-icon-disk" 

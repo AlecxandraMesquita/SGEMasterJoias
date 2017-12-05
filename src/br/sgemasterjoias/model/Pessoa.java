@@ -23,8 +23,14 @@ public class Pessoa  extends Model<Pessoa> {
 		private String cpf;
 		private String rg;
 		private String email;
-		
-				
+//		private String tipo;
+//				
+//		public String getTipo() {
+//			return tipo;
+//		}
+//		public void setTipo(String tipo) {
+//			this.tipo = tipo;
+//		}
 		@Override
 		public Integer getId() {
 			return id;

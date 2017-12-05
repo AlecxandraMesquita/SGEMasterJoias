@@ -27,6 +27,8 @@ public class AjusteEstoque extends Model<AjusteEstoque> {
 	private Date dataAjuste;
 	private String motivoAjuste;
 	
+	
+	
 	private TipoAjuste tipoAjuste;
 	
 	public Integer getEntoqueAntigo() {

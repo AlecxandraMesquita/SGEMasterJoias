@@ -8,9 +8,17 @@ import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
 import br.sgemasterjoias.factory.JPAFactory;
+import br.sgemasterjoias.list.controller.ProdutoListController;
 import br.sgemasterjoias.model.Estoque;
+import br.sgemasterjoias.model.ItemEntradaEstoque;
+import br.sgemasterjoias.model.Produto;
+import br.sgemasterjoias.model.Produto;
 import br.sgemasterjoias.repository.EstoqueRepository;
+import br.sgemasterjoias.repository.ItemEntradaEstoqueRepository;
+import br.sgemasterjoias.repository.EstoqueRepository;
+import br.sgemasterjoias.repository.ProdutoRepository;
 import br.sgemasterjoias.validation.EstoqueValidation;
+import br.unitins.frame.application.SelectionListener;
 import br.unitins.frame.controller.Controller;
 import br.unitins.frame.validation.Validation;
 
@@ -19,7 +27,8 @@ import br.unitins.frame.validation.Validation;
 public class EstoqueController extends Controller<Estoque>{
 	
 	private List<Estoque> listaEstoque;
-
+	private List<ItemEntradaEstoque> listaItemEntrada;
+	private Estoque estoque;
 	@Override
 	protected EntityManager getEntityManager() {
 		
@@ -63,6 +72,32 @@ public class EstoqueController extends Controller<Estoque>{
 		this.listaEstoque = listaEstoque;
 	}
 	
-	
+	public List<ItemEntradaEstoque> getListaItemEntrada() {
+		if (listaItemEntrada == null) {
+			ItemEntradaEstoqueRepository repository = new ItemEntradaEstoqueRepository(JPAFactory.getEntityManager());
+			listaItemEntrada = repository.bucarTodos();
+		}
+		return listaItemEntrada;
+	}
+
+	public void setListaItemEntrada(List<ItemEntradaEstoque> listaItemEntrada) {
+		this.listaItemEntrada = listaItemEntrada;
+	}
+
+//	public void abrirListProduto(ActionEvent actionEvent) {
+//		ProdutoListController list = new ProdutoListController();
+//		list.openList(new SelectionListener<Produto>() {
+//			@Override
+//			public void select(Produto entity) {
+//				EstoqueRepository repository = new EstoqueRepository(JPAFactory.getEntityManager());
+//				estoque = repository.bucarProduto(entity.getId());
+//				//consulta de estoque que passa como parametro o id da pessoa e retorna um estoque
+//				 if (estoque != null)
+//						setEntity(estoque);
+//				else
+//				  	getEntity().setQuantidadeProduto(quantidadeProduto);(entity);
+//			}
+//		});
+//	}
 
 }

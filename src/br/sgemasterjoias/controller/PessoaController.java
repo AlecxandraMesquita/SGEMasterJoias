@@ -8,6 +8,7 @@ import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
 import br.sgemasterjoias.factory.JPAFactory;
+import br.sgemasterjoias.model.Funcionario;
 import br.sgemasterjoias.model.MaterialProduto;
 import br.sgemasterjoias.model.Pessoa;
 import br.sgemasterjoias.model.TipoPessoa;
@@ -65,8 +66,8 @@ public class PessoaController extends Controller<Pessoa>{
 		this.listaPessoa = listaPessoa;
 	}
 	
-	public TipoPessoa[] getTipo(){
-		return TipoPessoa.values();
-    }
+//	public TipoPessoa[] getTipo(){
+//		return TipoPessoa.values();
+//    }
 	
 }	

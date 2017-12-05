@@ -13,6 +13,7 @@
 		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
 			<p:panel id="panel" header="Cadastro de Pessoa">
 			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+			
 				<p:inputText value="#{pessoaController.entity.nome}" placeholder="Nome"/>
 				
 				<p:inputText value="#{pessoaController.entity.telefone}" placeholder="Telefone"/>
@@ -22,7 +23,7 @@
 				<p:inputText value="#{pessoaController.entity.rg}" placeholder="RG"/>
 				
 				<p:inputMask value="#{pessoaController.entity.cpf}" placeholder="CPF" mask="999.999.999-99"/>
-											
+				
 			</p:panelGrid>
 		<br/>
 			
