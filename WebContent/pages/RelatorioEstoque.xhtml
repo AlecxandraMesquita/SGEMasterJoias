@@ -12,32 +12,30 @@
 	<h:form id="form">
 		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
 		
-	    	
 	    	<p:panel id="panel" header="Relatório de Estoque">
 			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
-												
+								
+				
+								
 			</p:panelGrid>
 
 			<br/>
 			
 			</p:panel>
-					
+						
 		<br/><p:separator id="separator" /><br/>
 
-		<p:dataTable id="dataTable" value="#{estoqueController.listaProduto}" var="objeto" widgetVar="dataTableWV" >	
-			<p:column>
-				<f:facet name="header">Id</f:facet>
-	    				#{objeto.id}
-	    		</p:column>
-			<p:column >
-				<f:facet name="header">Nome</f:facet>
+		<p:dataTable id="dataTable" value="#{estoqueController.listaEstoque}" var="objeto" widgetVar="dataTableWV" >	
+		
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
 	    				#{objeto.nome}
 	    		</p:column>
 	    		<p:column>
 					<f:facet name="header">Descrição</f:facet>
-	    				#{objeto.descricao}
+	    				#{objeto.produto.descricao}
 	    		</p:column>
-						<p:column>
+				<p:column>
 							<f:facet name="header">Tipo de Produto</f:facet>
 	    				#{objeto.tipoProduto.nome}
 	    		</p:column>
@@ -49,34 +47,34 @@
 							<f:facet name="header">Marca</f:facet>
 	    				#{objeto.marca.nome}
 	    		</p:column>
-	    	<p:column>
-				<f:facet name="header">Estoque Antigo</f:facet>
-	    				#{objeto.precoCusto}
+	    		<p:column>
+					<f:facet name="header">Estoque Antigo</f:facet>
+	    				#{objeto.quantidadeProduto}
 	    		</p:column>
-	    	<p:column>
-				<f:facet name="header">Ajuste de Etoqueo</f:facet>
-	    				#{objeto.precoVenda}
+		    	<p:column>
+					<f:facet name="header">Ajuste de Estoque</f:facet>
+	    				#{objeto.ajuste.ajusteEstoque}
 	    		</p:column>
 	    	
-	    	<p:column>
-				<f:facet name="header">Data do Ajuste</f:facet>
-	    				#{objeto.descricao}
+		    	<p:column>
+					<f:facet name="header">Data do Ajuste</f:facet>
+		    				#{objeto.ajuste.dataAjuste}
 	    		</p:column>
-	    	<p:column>
+	    		<p:column>
 				<f:facet name="header">Motivo do Ajuste</f:facet>
 	    				#{objeto.ajusteEstoque}
 	    		</p:column>
-	    	<p:column>
-				<f:facet name="header">Valor de Entrada</f:facet>
+		    	<p:column>
+					<f:facet name="header">Valor de Entrada</f:facet>
 	    				#{objeto.material}
 	    		</p:column>
-	    	<p:column>
-				<f:facet name="header">Valor de Saida</f:facet>
+		    	<p:column>
+					<f:facet name="header">Valor de Saida</f:facet>
 	    				#{objeto.marca}
-	    		</p:column>			
-	    	
+	    		</p:column>	
+		
 		</p:dataTable>
-	
+	    	
 	</h:form>
 </center>	
 </f:view>

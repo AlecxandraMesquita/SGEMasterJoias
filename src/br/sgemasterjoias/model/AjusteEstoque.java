@@ -22,25 +22,25 @@ public class AjusteEstoque extends Model<AjusteEstoque> {
 	@SequenceGenerator(name = "seqidajusteEstoque", sequenceName = "seqidajusteEstoque", allocationSize = 1)
 	
 	private Integer id;
-	private Integer entoqueAntigo;
+	private Estoque estoqueAntigo;
 	private Integer ajusteEntoque;
 	private Date dataAjuste;
 	private String motivoAjuste;
+	private EntradaEstoque entrada;
 	
-	
-	
+	public Estoque getEstoqueAntigo() {
+		return estoqueAntigo;
+	}
+	public void setEstoqueAntigo(Estoque estoqueAntigo) {
+		this.estoqueAntigo = estoqueAntigo;
+	}
 	private TipoAjuste tipoAjuste;
 	
-	public Integer getEntoqueAntigo() {
-		return entoqueAntigo;
-	}
-	public void setEntoqueAntigo(Integer entoqueAntigo) {
-		this.entoqueAntigo = entoqueAntigo;
-	}
-	public Integer getAjusteEntoque() {
+
+	public Integer getAjusteEstoque() {
 		return ajusteEntoque;
 	}
-	public void setAjusteEntoque(Integer ajusteEntoque) {
+	public void setAjusteEstoque(Integer ajusteEntoque) {
 		this.ajusteEntoque = ajusteEntoque;
 	}
 	public Date getDataAjuste() {
@@ -70,4 +70,12 @@ public class AjusteEstoque extends Model<AjusteEstoque> {
 		this.id = id;
 		
 	}
+	public EntradaEstoque getEntrada() {
+		return entrada;
+	}
+	public void setEntrada(EntradaEstoque entrada) {
+		this.entrada = entrada;
+		
+	}
+	
 }

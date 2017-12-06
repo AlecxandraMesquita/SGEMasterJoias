@@ -34,7 +34,7 @@ public class EstoqueRepository extends Repository<Estoque>{
 	}
 	public List<Estoque> bucarEstoques(String nome) {
 		
-		Query query = geEntityManager().createQuery("SELECT f FROM Estoque f WHERE f.pessoa.nome LIKE ?1 ORDER BY f.pessoa.nome");
+		Query query = geEntityManager().createQuery("SELECT e FROM Estoque e WHERE e.produto.nome LIKE ?1 ORDER BY e.produro.nome");
 		query.setParameter(1, "%"+nome+"%");
 		List<Estoque> lista = query.getResultList();
 		
@@ -42,19 +42,19 @@ public class EstoqueRepository extends Repository<Estoque>{
 			lista = new ArrayList<Estoque>();
 		
 		return lista;
-}
-public Estoque bucarProduto(Integer id) {
-
-	Query query = geEntityManager().createQuery("SELECT f FROM Estoque f WHERE f.pessoa.id = ?1 ");
-	query.setParameter(1, id);
-	Estoque funcionario = null;
-	try {
-		funcionario = (Estoque) query.getSingleResult();	
-	} catch (javax.persistence.NoResultException exception) {
-		
 	}
-
-	return funcionario;
-}
+	public Estoque bucarEntradas(Integer id) {
+	
+		Query query = geEntityManager().createQuery("SELECT e FROM Estoque e WHERE e.entrada.id = ?1 ");
+		query.setParameter(1, id);
+		Estoque funcionario = null;
+		try {
+			funcionario = (Estoque) query.getSingleResult();	
+		} catch (javax.persistence.NoResultException exception) {
+			
+		}
+	
+		return funcionario;
+	}
 
 }

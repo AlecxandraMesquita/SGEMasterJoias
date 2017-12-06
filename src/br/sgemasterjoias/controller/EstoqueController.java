@@ -9,10 +9,12 @@ import javax.persistence.EntityManager;
 
 import br.sgemasterjoias.factory.JPAFactory;
 import br.sgemasterjoias.list.controller.ProdutoListController;
+import br.sgemasterjoias.model.EntradaEstoque;
 import br.sgemasterjoias.model.Estoque;
 import br.sgemasterjoias.model.ItemEntradaEstoque;
 import br.sgemasterjoias.model.Produto;
 import br.sgemasterjoias.model.Produto;
+import br.sgemasterjoias.repository.EntradaEstoqueRepository;
 import br.sgemasterjoias.repository.EstoqueRepository;
 import br.sgemasterjoias.repository.ItemEntradaEstoqueRepository;
 import br.sgemasterjoias.repository.EstoqueRepository;
@@ -27,7 +29,7 @@ import br.unitins.frame.validation.Validation;
 public class EstoqueController extends Controller<Estoque>{
 	
 	private List<Estoque> listaEstoque;
-	private List<ItemEntradaEstoque> listaItemEntrada;
+	private List<EntradaEstoque> listaItemEntrada;
 	private Estoque estoque;
 	@Override
 	protected EntityManager getEntityManager() {
@@ -72,15 +74,15 @@ public class EstoqueController extends Controller<Estoque>{
 		this.listaEstoque = listaEstoque;
 	}
 	
-	public List<ItemEntradaEstoque> getListaItemEntrada() {
+	public List<EntradaEstoque> getListaItemEntrada() {
 		if (listaItemEntrada == null) {
-			ItemEntradaEstoqueRepository repository = new ItemEntradaEstoqueRepository(JPAFactory.getEntityManager());
+			EntradaEstoqueRepository repository = new EntradaEstoqueRepository(JPAFactory.getEntityManager());
 			listaItemEntrada = repository.bucarTodos();
 		}
 		return listaItemEntrada;
 	}
 
-	public void setListaItemEntrada(List<ItemEntradaEstoque> listaItemEntrada) {
+	public void setListaEntrada(List<EntradaEstoque> listaItemEntrada) {
 		this.listaItemEntrada = listaItemEntrada;
 	}
 

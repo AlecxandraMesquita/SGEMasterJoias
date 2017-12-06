@@ -21,11 +21,45 @@ public class Estoque extends Model<Estoque>{
 
 	private Integer id;
 	private Integer quantidadeProduto;
-	
+	private EntradaEstoque entrada;
+	private String nome;
+	private AjusteEstoque ajuste;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idproduto", nullable = false, unique = true)
 	private Produto produto;
 	
+	
+	public AjusteEstoque getAjuste() {
+		return ajuste;
+	}
+
+	public void setAjuste(AjusteEstoque ajuste) {
+		this.ajuste = ajuste;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public EntradaEstoque getEntrada() {
+		return entrada;
+	}
+
+	public void setEntrada(EntradaEstoque entrada) {
+		this.entrada = entrada;
+	}
 
 	public Integer getQuantidadeProduto() {
 		return quantidadeProduto;
@@ -44,5 +78,6 @@ public class Estoque extends Model<Estoque>{
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 }

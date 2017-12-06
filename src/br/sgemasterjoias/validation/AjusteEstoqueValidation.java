@@ -14,10 +14,10 @@ public class AjusteEstoqueValidation implements Validation<AjusteEstoque> {
 	@Override
 	public void validate(AjusteEstoque t) throws ValidationException {
 		
-		if (t.getEntoqueAntigo() == null || t.getEntoqueAntigo().toString().equals(""))
+		if (t.getEstoqueAntigo() == null || t.getEstoqueAntigo().toString().equals(""))
 			getlistMessages().add("O estoque Antigo deve ser informado!");
 		
-		if (t.getAjusteEntoque() == null || t.getAjusteEntoque().toString().equals(""))
+		if (t.getAjusteEstoque() == null || t.getAjusteEstoque().toString().equals(""))
 			getlistMessages().add("O Ajuste deve ser informado!");
 		
 		if (t.getDataAjuste() == null || t.getDataAjuste().toString().equals(""))

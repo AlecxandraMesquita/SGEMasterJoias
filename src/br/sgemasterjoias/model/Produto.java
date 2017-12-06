@@ -32,7 +32,14 @@ public class Produto extends Model<Produto>{
 
 		private MaterialProduto material;
 
-		
+		public String getNome() {
+			return nome;
+		}
+
+		public void setNome(String nome) {
+			this.nome = nome;
+		}
+
 
 		public MaterialProduto getMaterial() {
 			return material;
@@ -76,14 +83,6 @@ public class Produto extends Model<Produto>{
 			this.id = id;
 		}
 
-		public String getNome() {
-			return nome;
-		}
-
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
-
 		public Double getPrecoCusto() {
 			return precoCusto;
 		}
@@ -99,5 +98,6 @@ public class Produto extends Model<Produto>{
 		public void setPrecoVenda(Double precoVenda) {
 			this.precoVenda = precoVenda;
 		}
+
 		
 }

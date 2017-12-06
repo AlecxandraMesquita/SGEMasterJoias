@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.sgemasterjoias.model.AjusteEstoque;
+import br.sgemasterjoias.model.AjusteEstoque;
 import br.unitins.frame.repository.Repository;
 
 
@@ -43,5 +44,30 @@ public List<AjusteEstoque> bucarAjusteEstoque(String nome) {
 			lista = new ArrayList<AjusteEstoque>();
 		
 		return lista;
+	}
+	
+	public List<AjusteEstoque> bucarAjustes(String nome) {
+		
+		Query query = geEntityManager().createQuery("SELECT f FROM AjusteEstoque f WHERE f.entrada.nome LIKE ?1 ORDER BY f.entrada.nome");
+		query.setParameter(1, "%"+nome+"%");
+		List<AjusteEstoque> lista = query.getResultList();
+		
+		if (lista == null)
+			lista = new ArrayList<AjusteEstoque>();
+		
+		return lista;
+	}
+	public AjusteEstoque bucarAjuste(Integer id) {
+	
+		Query query = geEntityManager().createQuery("SELECT f FROM AjusteEstoque f WHERE f.entrada.id = ?1 ");
+		query.setParameter(1, id);
+		AjusteEstoque ajuste = null;
+		try {
+			ajuste = (AjusteEstoque) query.getSingleResult();	
+		} catch (javax.persistence.NoResultException exception) {
+		
+		}
+	
+		return ajuste;
 	}
 }
