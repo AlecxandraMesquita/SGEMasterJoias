@@ -21,6 +21,13 @@ public class Funcionario extends Model<Funcionario>{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqidfuncionario")
 	@SequenceGenerator(name = "seqidfuncionario", sequenceName = "seqidfuncionario", allocationSize = 1)
 	private Integer id;
+	private String nome;
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	private String senha;
 	private Double salario;
 	

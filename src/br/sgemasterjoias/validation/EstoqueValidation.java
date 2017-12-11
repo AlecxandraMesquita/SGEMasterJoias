@@ -14,17 +14,17 @@ public class EstoqueValidation implements Validation<Estoque> {
 	@Override
 	public void validate(Estoque t) throws ValidationException {
 		
-//		if (t.getNome() == null || t.getProduto.getNome().trim().equals(""))
-//			getlistMessages().add("O Nome deve ser informado!");
-//		
-//		if (t.getPrecoCusto() == null || t.getPrecoCusto().toString().equals(""))
+//		if (t.getNome() == null || t.getProduto().getNome().trim().equals(""))
+//			getlistMessages().add("O Nome do produto deve ser informado!");
+		
+//		if (t.getProduto().getPrecoCusto() == null || t.getProduto().getPrecoCusto().toString().equals(""))
 //			getlistMessages().add("O Preço de custo deve ser informado!");
 //		
 //		if (t.getPrecoVenda() == null || t.getPrecoVenda().toString().equals(""))
 //			getlistMessages().add("O Preço de Venda deve ser informado!");
 		
-		if (t.getQuantidadeProduto() == null || t.getQuantidadeProduto().toString().equals(""))
-			getlistMessages().add("A quantidade de Produto deve ser informada!");
+//		if (t.getQuantidadeProduto() == null || t.getQuantidadeProduto().toString().equals(""))
+//			getlistMessages().add("A quantidade de Produto deve ser informada!");
 				
 		if (getlistMessages().size() > 0)
 			throw new ValidationException(getlistMessages());

@@ -8,16 +8,18 @@ import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
 import br.sgemasterjoias.factory.JPAFactory;
+import br.sgemasterjoias.list.controller.EntradaEstoqueListController;
 import br.sgemasterjoias.list.controller.ProdutoListController;
 import br.sgemasterjoias.model.EntradaEstoque;
+//import br.sgemasterjoias.list.controller.ProdutoListController;
+//import br.sgemasterjoias.model.EntradaEstoque;
 import br.sgemasterjoias.model.Estoque;
-import br.sgemasterjoias.model.ItemEntradaEstoque;
-import br.sgemasterjoias.model.Produto;
+//import br.sgemasterjoias.model.ItemEntradaEstoque;
 import br.sgemasterjoias.model.Produto;
 import br.sgemasterjoias.repository.EntradaEstoqueRepository;
+//import br.sgemasterjoias.repository.EntradaEstoqueRepository;
 import br.sgemasterjoias.repository.EstoqueRepository;
-import br.sgemasterjoias.repository.ItemEntradaEstoqueRepository;
-import br.sgemasterjoias.repository.EstoqueRepository;
+//import br.sgemasterjoias.repository.ItemEntradaEstoqueRepository;
 import br.sgemasterjoias.repository.ProdutoRepository;
 import br.sgemasterjoias.validation.EstoqueValidation;
 import br.unitins.frame.application.SelectionListener;
@@ -29,8 +31,9 @@ import br.unitins.frame.validation.Validation;
 public class EstoqueController extends Controller<Estoque>{
 	
 	private List<Estoque> listaEstoque;
+	private List<Produto> listaProduto;
 	private List<EntradaEstoque> listaItemEntrada;
-	private Estoque estoque;
+	private Estoque estoque, estoque1;
 	@Override
 	protected EntityManager getEntityManager() {
 		
@@ -81,25 +84,53 @@ public class EstoqueController extends Controller<Estoque>{
 		}
 		return listaItemEntrada;
 	}
-
 	public void setListaEntrada(List<EntradaEstoque> listaItemEntrada) {
 		this.listaItemEntrada = listaItemEntrada;
 	}
-
-//	public void abrirListProduto(ActionEvent actionEvent) {
-//		ProdutoListController list = new ProdutoListController();
-//		list.openList(new SelectionListener<Produto>() {
-//			@Override
-//			public void select(Produto entity) {
-//				EstoqueRepository repository = new EstoqueRepository(JPAFactory.getEntityManager());
-//				estoque = repository.bucarProduto(entity.getId());
-//				//consulta de estoque que passa como parametro o id da pessoa e retorna um estoque
-//				 if (estoque != null)
-//						setEntity(estoque);
-//				else
-//				  	getEntity().setQuantidadeProduto(quantidadeProduto);(entity);
-//			}
-//		});
-//	}
-
+	
+	public void abrirListEntrada(ActionEvent actionEvent) {
+		EntradaEstoqueListController lista = new EntradaEstoqueListController();
+		lista.openList(new SelectionListener<EntradaEstoque>() {
+			@Override
+			public void select(EntradaEstoque entity) {
+				EstoqueRepository repository = new EstoqueRepository(JPAFactory.getEntityManager());
+				estoque1 = repository.bucarEntradas(entity.getId());
+				//consulta de estoque que passa como parametro o id da pessoa e retorna um estoque
+				 if (estoque1 != null)
+						setEntity(estoque1);
+				else
+				  	getEntity().setEntrada(entity);
+			}
+		});
+	}
+	
+	public List<Produto> getListaProduto() {
+		if (listaProduto == null) {
+			ProdutoRepository repository = new ProdutoRepository(JPAFactory.getEntityManager());
+			listaProduto = repository.bucarTodos();
+		}
+		return listaProduto;
+	}
+	public void setListaProduto(List<Produto> listaProduto) {
+		this.listaProduto = listaProduto;
+	}
+	
+	
+	public void abrirListProduto(ActionEvent actionEvent) {
+		ProdutoListController list = new ProdutoListController();
+		list.openList(new SelectionListener<Produto>() {
+			@Override
+			public void select(Produto entity) {
+				EstoqueRepository repository = new EstoqueRepository(JPAFactory.getEntityManager());
+				estoque = repository.bucarEntradas(entity.getId());
+				//consulta de estoque que passa como parametro o id da pessoa e retorna um estoque
+				 if (estoque != null)
+						setEntity(estoque);
+				else
+				  	getEntity().setProduto(entity);
+			}
+		});
+	}
+	
+	
 }

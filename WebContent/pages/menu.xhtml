@@ -7,47 +7,41 @@
 	<div class="menu">
 		<h:form>
 			<p:menu toggleable="true">
-				<p:menuitem value="Menu"  ajax="false" action="/pages/dashboard.xhtml"
-					icon="ui-icon-disk" />
+				 
 					
 				<p:submenu label="Pessoas">
-					<p:menuitem value="Cadastrar" icon="ui-icon-disk" action="/pages/Pessoa.xhtml"/>
-					<p:menuitem value="Funcionario" icon="ui-icon-disk" action="/pages/funcionario.xhtml"/>
-					<p:menuitem value="Cliente" action="/pages/cliente.xhtml" icon="ui-icon-disk" />
+					<p:menuitem value="Cadastrar" icon="ui-icon-disk" url="/faces/pages/Pessoa.xhtml"/>
+					<p:menuitem value="Funcionario" icon="ui-icon-disk" url="/faces/pages/funcionario.xhtml"/>
+					<p:menuitem value="Cliente" url="/faces/pages/cliente.xhtml" icon="ui-icon-disk" />
+					<p:menuitem value="Enviar E-mail" url="/faces/pages/EnviarEmail.xhtml" icon="ui-icon-disk" />
 				</p:submenu>
 				
 				<p:submenu label="Produtos">
 					<p:menuitem value="Gerenciar" ajax="false" icon="ui-icon-disk"
-						action="/pages/Produto.xhtml" />
-					<p:menuitem value="Marca" icon="ui-icon-disk" action="/pages/Marca.xhtml" />
-					<p:menuitem value="Tipo" icon="ui-icon-disk" action="/pages/TipoProduto.xhtml" />
+						url="/faces/pages/Produto.xhtml" />
+					<p:menuitem value="Marca" icon="ui-icon-disk" url="/faces/pages/Marca.xhtml" />
+					<p:menuitem value="Tipo" icon="ui-icon-disk" url="/faces/pages/TipoProduto.xhtml" />
 				</p:submenu>
 				
 				<p:submenu label="Estoque">
-					<p:menuitem value="Entrada" ajax="false" icon="ui-icon-disk" action="/pages/entradaEstoque.xhtml"  />
-					<p:menuitem value="Cadastrar Item " ajax="false" icon="ui-icon-disk" action="/pages/ItemEntrada.xhtml" />
+					<p:menuitem value="Entrada" ajax="false" icon="ui-icon-disk" url="/faces/pages/EntradaEstoque.xhtml"/>
 					<p:menuitem value="Ajuste de Estoque" ajax="false" icon="ui-icon-disk" 
-					action="/pages/AjusteEstoque.xhtml" />
-					<p:menuitem value="Relatóri de Estoque" ajax="false" icon="ui-icon-disk" 
-					action="/pages/RelatorioEstoque.xhtml"/>
+					url="/faces/pages/AjusteEstoque.xhtml" />
+					<p:menuitem value="Estoque" ajax="false" icon="ui-icon-disk" 
+					url="/faces/pages/Estoque.xhtml"/>
 					<p:menuitem value="Novo" ajax="false"
-						action="/pages/Produto.xhtml" icon="ui-icon-disk" />
+						url="/faces/pages/Produto.xhtml" icon="ui-icon-disk" />
 				</p:submenu>
 				
 				<p:submenu label="Venda">
 					<p:menuitem value="Gerenciar" ajax="false" icon="ui-icon-disk" />
 					<p:menuitem value="Nova Venda" ajax="false"/>
 					<p:menuitem value="Relatório" ajax="false"
-						action="/pages/Produto.xhtml"
+						url="/faces/pages/Produto.xhtml"
 						icon="ui-icon-disk" />
 				</p:submenu>
 			</p:menu>
 
 		</h:form>
 	</div>
-
-
-
-
-
 </ui:composition>

@@ -1,0 +1,121 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+<ui:define name="conteudo">
+
+<f:view>
+<center>
+
+	<h:form id="form">
+		<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+		
+	    	<p:panel id="panel" header="Relatório de Estoque">
+			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
+				<p:commandLink value="Produto:"
+					actionListener="#{estoqueController.abrirListProduto}">
+					<p:ajax event="dialogReturn" update="form" />
+				</p:commandLink>				
+				
+				<p:inputText value="#{estoqueController.entity.produto.nome}" placeholder="Nome" disabled="true"/>	
+				
+				<p:commandLink value="Entrada:"
+					actionListener="#{estoqueController.abrirListEntrada}">
+					<p:ajax event="dialogReturn" update="form" />
+				</p:commandLink>				
+				
+				<p:inputText value="#{estoqueController.entity.entrada.produto.nome}" placeholder="NomeProduto" disabled="true"/>	
+								
+			</p:panelGrid>
+				<p:commandButton value="Incluir" 
+				actionListener="#{estoqueController.insert}" 
+				disabled="#{estoqueController.entity.id != null}"
+				process="panel" update="form" />
+				
+			<p:commandButton value="Alterar" 
+				actionListener="#{estoqueController.update}" 
+				disabled="#{estoqueController.entity.id == null}"
+				process="panel" update="form" />
+	
+			<p:commandButton value="Excluir" 
+				actionListener="#{estoqueController.delete}"
+				disabled="#{estoqueController.entity.id == null}"	
+				process="panel" update="form" />
+				
+			<p:commandButton value="Limpar" icon="" 
+				actionListener="#{estoqueController.clean}" 
+				process="panel" update="form" />
+			<br/>
+			
+			</p:panel>
+						
+		<br/><p:separator id="separator" /><br/>
+
+		<p:dataTable id="dataTable" value="#{estoqueController.listaEstoque}" var="objeto" widgetVar="dataTableWV" >	
+		
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+	    				#{objeto.produto.nome}
+	    		</p:column>
+	    		<p:column>
+					<f:facet name="header">Descrição</f:facet>
+	    				#{objeto.produto.descricao}
+	    		</p:column>
+	    		<p:column>
+					<f:facet name="header">Quantidade</f:facet>
+	    				#{objeto.entrada.quantidade}
+	    		</p:column>
+				<p:column>
+							<f:facet name="header">Tipo de Produto</f:facet>
+	    				#{objeto.produto.tipoProduto.nome}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Material</f:facet>
+	    				#{objeto.produto.material.nome}
+	    		</p:column>
+						<p:column>
+							<f:facet name="header">Marca</f:facet>
+	    				#{objeto.produto.marca.nome}
+	    		</p:column>
+	    		<p:column>
+					<f:facet name="header">Estoque Antigo</f:facet>
+	    				#{objeto.entrada.quantidade}
+	    		</p:column>
+		    	<p:column>
+					<f:facet name="header">Ajuste de Estoque</f:facet>
+	    				#{objeto.ajuste.ajusteEstoque}
+	    		</p:column>
+	    	
+		    	<p:column>
+					<f:facet name="header">Data do Ajuste</f:facet>
+		    				#{objeto.ajuste.dataAjuste}
+	    		</p:column>
+	    		<p:column>
+				<f:facet name="header">Motivo do Ajuste</f:facet>
+	    				#{objeto.ajuste.ajusteEstoque}
+	    		</p:column>
+		    	<p:column>
+					<f:facet name="header">Valor de Compra</f:facet>
+	    				#{objeto.produto.precoCusto}
+	    		</p:column>
+		    	<p:column>
+					<f:facet name="header">Valor de Venda</f:facet>
+	    				#{objeto.produto.precoVenda}
+	    		</p:column>	
+				<p:column >
+				<f:facet name="header">Ação</f:facet>
+				<p:commandButton value="Editar" update="form" icon="fa fa-bug" >
+					<f:setPropertyActionListener
+						target="#{estoqueController.entity}" value="#{objeto}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	    	
+	</h:form>
+</center>	
+</f:view>
+
+</ui:define>
+</ui:composition>

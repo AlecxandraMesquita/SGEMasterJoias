@@ -12,6 +12,7 @@ import br.unitins.frame.repository.Repository;
 
 public class FuncionarioRepository extends Repository<Funcionario>{
 
+
 	public FuncionarioRepository(EntityManager em) {
 		super(em);
 	}

@@ -22,11 +22,11 @@ public class AjusteEstoque extends Model<AjusteEstoque> {
 	@SequenceGenerator(name = "seqidajusteEstoque", sequenceName = "seqidajusteEstoque", allocationSize = 1)
 	
 	private Integer id;
-	private Estoque estoqueAntigo;
 	private Integer ajusteEntoque;
 	private Date dataAjuste;
 	private String motivoAjuste;
 	private EntradaEstoque entrada;
+	private Estoque estoqueAntigo;
 	
 	public Estoque getEstoqueAntigo() {
 		return estoqueAntigo;
@@ -77,5 +77,5 @@ public class AjusteEstoque extends Model<AjusteEstoque> {
 		this.entrada = entrada;
 		
 	}
-	
+
 }

@@ -47,14 +47,14 @@ public class EstoqueRepository extends Repository<Estoque>{
 	
 		Query query = geEntityManager().createQuery("SELECT e FROM Estoque e WHERE e.entrada.id = ?1 ");
 		query.setParameter(1, id);
-		Estoque funcionario = null;
+		Estoque enstoque = null;
 		try {
-			funcionario = (Estoque) query.getSingleResult();	
+			enstoque = (Estoque) query.getSingleResult();	
 		} catch (javax.persistence.NoResultException exception) {
 			
 		}
 	
-		return funcionario;
+		return enstoque;
 	}
 
 }

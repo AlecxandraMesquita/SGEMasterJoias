@@ -8,14 +8,18 @@ import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
 import br.sgemasterjoias.factory.JPAFactory;
-import br.sgemasterjoias.list.controller.EntradaEstoqueListController;
+import br.sgemasterjoias.list.controller.ProdutoListController;
+//import br.sgemasterjoias.list.controller.EntradaEstoqueListController;
 import br.sgemasterjoias.model.AjusteEstoque;
-import br.sgemasterjoias.model.Estoque;
 import br.sgemasterjoias.model.EntradaEstoque;
+import br.sgemasterjoias.model.Estoque;
+import br.sgemasterjoias.model.Produto;
+//import br.sgemasterjoias.model.EntradaEstoque;
 import br.sgemasterjoias.model.TipoAjuste;
 import br.sgemasterjoias.repository.AjusteEstoqueRepository;
-import br.sgemasterjoias.repository.EntradaEstoqueRepository;
+//import br.sgemasterjoias.repository.EntradaEstoqueRepository;
 import br.sgemasterjoias.repository.EstoqueRepository;
+import br.sgemasterjoias.repository.ProdutoRepository;
 import br.sgemasterjoias.validation.AjusteEstoqueValidation;
 import br.unitins.frame.application.SelectionListener;
 import br.unitins.frame.controller.Controller;
@@ -27,7 +31,8 @@ public class AjusteEstoqueController extends Controller<AjusteEstoque> {
 
 	private List<AjusteEstoque> listaAjusteEstoque;
 	private List<Estoque> listaEstoque;
-	private List<EntradaEstoque> listaEntradaEstoque;
+	//private List<EntradaEstoque> listaEntradaEstoque;
+	private List<Produto> listaProduto;
 	private AjusteEstoque ajuste;
 	@Override
 	protected EntityManager getEntityManager() {
@@ -83,32 +88,59 @@ public class AjusteEstoqueController extends Controller<AjusteEstoque> {
 	public TipoAjuste[] getTipoAjuste(){
 		return TipoAjuste.values();
     }
-	
-	public List<EntradaEstoque> getListaEntradaEstoque() {
-		if (listaEntradaEstoque == null) {
-			EntradaEstoqueRepository repository = new EntradaEstoqueRepository(JPAFactory.getEntityManager());
-			listaEntradaEstoque = repository.bucarTodos();
+	public List<Produto> getListaProduto() {
+		if (listaProduto == null) {
+			ProdutoRepository repository = new ProdutoRepository(JPAFactory.getEntityManager());
+			listaProduto = repository.bucarTodos();
 		}
-		return listaEntradaEstoque;
+		return listaProduto;
 	}
-
-	public void setListaEntradaEstoque(List<EntradaEstoque> listaEntradaEstoque) {
-		this.listaEntradaEstoque = listaEntradaEstoque;
+	public void setListaProduto(List<Produto> listaProduto) {
+		this.listaProduto = listaProduto;
 	}
-
-	public void abrirListEnttrada(ActionEvent actionEvent) {
-		EntradaEstoqueListController list = new EntradaEstoqueListController();
-		list.openList(new SelectionListener<EntradaEstoque>() {
+	
+	
+	public void abrirListProduto(ActionEvent actionEvent) {
+		ProdutoListController list = new ProdutoListController();
+		list.openList(new SelectionListener<Produto>() {
 			@Override
-			public void select(EntradaEstoque entity) {
+			public void select(Produto entity) {
 				AjusteEstoqueRepository repository = new AjusteEstoqueRepository(JPAFactory.getEntityManager());
 				ajuste = repository.bucarAjuste(entity.getId());
-				//consulta de funcionario que passa como parametro o id da pessoa e retorna um funcionario
+				//consulta de estoque que passa como parametro o id da pessoa e retorna um estoque
 				 if (ajuste != null)
 						setEntity(ajuste);
 				else
-				  	getEntity().setEntrada(entity);
+				  	getEntity().getEstoqueAntigo().setProduto(entity);
 			}
 		});
 	}
+	
+//	public List<EntradaEstoque> getListaEntradaEstoque() {
+//		if (listaEntradaEstoque == null) {
+//			EntradaEstoqueRepository repository = new EntradaEstoqueRepository(JPAFactory.getEntityManager());
+//			listaEntradaEstoque = repository.bucarTodos();
+//		}
+//		return listaEntradaEstoque;
+//	}
+
+//	public void setListaEntradaEstoque(List<EntradaEstoque> listaEntradaEstoque) {
+//		this.listaEntradaEstoque = listaEntradaEstoque;
+//	}
+//
+//	public void abrirListEnttrada(ActionEvent actionEvent) {
+//		EntradaEstoqueListController list = new EntradaEstoqueListController();
+//		list.openList(new SelectionListener<EntradaEstoque>() {
+//			@Override
+//			public void select(EntradaEstoque entity) {
+//				AjusteEstoqueRepository repository = new AjusteEstoqueRepository(JPAFactory.getEntityManager());
+//				ajuste = repository.bucarAjuste(entity.getId());
+//				//consulta de funcionario que passa como parametro o id da pessoa e retorna um funcionario
+//				 if (ajuste != null)
+//						setEntity(ajuste);
+//				else
+//				  	getEntity().setEntrada(entity);
+//			}
+//		});
+//	}
 }

@@ -15,11 +15,11 @@
 			<p:panelGrid id="pgDados" columns="2" styleClass="semBorda" >
 				
 				<p:commandLink value="Produto:"
-					actionListener="#{ajusteEstoqueController.abrirListEnttrada}">
+					actionListener="#{ajusteEstoqueController.abrirListProduto}">
 					<p:ajax event="dialogReturn" update="form" />
 				</p:commandLink>
 
-				<p:inputText value="#{ajusteEstoqueController.entity.entrada.produto.nome}" placeholder="Nome" disabled="true"/>
+				<p:inputText value="#{ajusteEstoqueController.entity.ajusteEstoque.produto.nome}" placeholder="Nome" disabled="true"/>
 							
 				
 				<p:selectOneMenu id = "EstoqueAntigo"

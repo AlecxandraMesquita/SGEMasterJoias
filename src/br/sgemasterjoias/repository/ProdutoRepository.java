@@ -37,7 +37,7 @@ public class ProdutoRepository extends Repository<Produto> {
 	
 	public List<Produto> bucarProdutos(String nome) {
 
-		Query query = geEntityManager().createQuery("SELECT p FROM Produto p WHERE p.nome LIKE ?1 ORDER BY p.nome");
+		Query query = geEntityManager().createQuery("SELECT pt FROM Produto pt WHERE pt.nome LIKE ?1 ORDER BY pt.nome");
 		query.setParameter(1, "%" + nome + "%");
 		List<Produto> lista = query.getResultList();
 
@@ -49,7 +49,7 @@ public class ProdutoRepository extends Repository<Produto> {
 	
 //	public Produto bucarItem(Integer id) {
 //
-//		Query query = geEntityManager().createQuery("SELECT p FROM Produto p WHERE p.item.id = ?1 ");
+//		Query query = geEntityManager().createQuery("SELECT p FROM Produto p WHERE p.id = ?1 ");
 //		query.setParameter(1, id);
 //		Produto produto = null;
 //		try {
