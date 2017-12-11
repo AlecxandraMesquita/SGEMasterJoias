@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+	<ui:define name="conteudo">
+	
+		<f:view>
+			<center>
+		
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+					<p:panel id="panel" header="Cadastro de Funcionário">
+						<p:panelGrid id="pgDados" columns="2" styleClass="semBorda">
+																	 
+							<p:commandLink value="Nome:"
+								actionListener="#{clienteController.abrirListPessoa}">
+								<p:ajax event="dialogReturn" update="form" />
+							</p:commandLink>
+
+							<p:inputText value="#{clienteController.entity.pessoa.nome}" placeholder="Nome" disabled="true"/>
+							
+						</p:panelGrid>
+						<br/>
+						
+						<p:commandButton value="Incluir" 
+							actionListener="#{clienteController.insert}" 
+							disabled="#{clienteController.entity.id != null}"
+							process="panel" update="form" />
+						
+						<p:commandButton value="Alterar" 
+							actionListener="#{clienteController.update}" 
+							disabled="#{clienteController.entity.id == null}"
+							process="panel" update="form" />
+				
+						<p:commandButton value="Excluir" 
+							actionListener="#{clienteController.delete}" 
+							disabled="#{clienteclienteController.entity.id == null}"	
+							process="panel" update="form" />
+						
+						<p:commandButton value="Limpar" icon="" 
+							actionListener="#{clienteController.clean}" 
+							process="panel" update="form" />
+					</p:panel>
+						<br/>
+					<p:separator id="separator" />
+					<br/>
+					
+					
+				</h:form>
+			</center>	
+		</f:view>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+	<ui:define name="conteudo">
+		<f:view>
+			<center>
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false" life="5000" />
+
+					<p:separator />
+
+					<p:fieldset legend="Envie nos um e-mail" toggleable="true"
+						toggleSpeed="500">
+						<p:panelGrid columns="2" cellpadding="1">
+
+							<h:outputText value="De:  " />
+							<p:inputText value="#{mailgctr.fromMail}" />
+
+							<h:outputText value="Usuário:  " />
+							<p:inputText value="#{mailgctr.username}" />
+
+							<h:outputText value="Senha:  " />
+							<p:password value="#{mailgctr.password}" />
+
+							<h:outputText value="Destinatário: " />
+							<p:inputText value="#{mailgctr.toMail}" />
+
+							<h:outputText value="Assunto: " />
+							<p:inputText value="#{mailgctr.subject}" />
+
+							<h:outputText value="Mensagem:  " />
+							<h:inputTextarea value="#{mailgctr.message}" />
+
+						</p:panelGrid>
+					</p:fieldset>
+					<p:commandButton value="Enviar" action="#{mailgctr.send()}" />
+				</h:form>
+			</center>
+		</f:view>
+	</ui:define>
+</ui:composition>

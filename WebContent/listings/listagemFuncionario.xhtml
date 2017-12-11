@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/listings/templateListing.xhtml">
+	<ui:define name="titulo">Listagem de Funcionario</ui:define>
+	<ui:define name="conteudoCorpo">
+		<f:metadata>
+			<f:viewParam name="chave" value="#{funcionarioListController.chave}" />
+			<f:viewAction action="#{funcionarioListController.onLoad}" />
+		</f:metadata>
+		<h:form id="form">
+			<p:focus context="form" />
+			<h:panelGrid columns="2">
+				<p:inputText id="inputNome" value="#{funcionarioListController.entity.pessoa.nome}"
+					style="width:520px; " />
+				<p:commandButton value="Pesquisar"  actionListener="#{funcionarioListController.search}" process="@this,inputNome" update="form"/>
+			</h:panelGrid>
+			<p:separator id="separator" />
+			
+			<p:dataTable id="dataTable" 
+				value="#{funcionarioListController.listEntity}"
+				emptyMessage="Nenhum registro encontrado" var="objeto" >
+				<p:ajax event="rowSelect"
+					listener="#{funcionarioListController.onRowSelect}"
+					update=":form:dataTable" />
+				<f:facet name="header">
+			         #{funcionarioListController.listEntity.size()} registro(s) encontrado(s)
+			    </f:facet>
+				<p:column >
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{objeto.pessoa.nome}" />
+				</p:column>
+				<p:column style="width:60px;text-align: center">
+					<p:commandButton update=":form" icon="ui-icon-search" actionListener="#{funcionarioListController.onSelect(objeto)}" >
+						<f:setPropertyActionListener target="#{funcionarioListController.entity}"	value="#{objeto}"  />
+					</p:commandButton>
+				</p:column>				
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

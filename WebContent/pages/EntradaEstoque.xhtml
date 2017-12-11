@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+
+	<ui:define name="conteudo">
+	
+		<f:view>
+			<center>
+		
+				<h:form id="form">
+					<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+					<p:panel id="panel" header="Cadastro de Entrada de Estoque">
+						<p:panelGrid id="pgDados" columns="2" styleClass="semBorda">
+																	 
+							<p:commandLink value="Item:"
+								actionListener="#{entradaEstoqueController.abrirListProduto}">
+								<p:ajax event="dialogReturn" update="form" />
+							</p:commandLink>
+
+							<p:inputText value="#{entradaEstoqueController.entity.produto.nome}" placeholder="Nome do Item" disabled="true"/>
+							
+							<p:inputText value="#{entradaEstoqueController.entity.quantidade}" placeholder="Quantidade"/>
+			
+							<p:inputText value="#{entradaEstoqueController.entity.dataEntrada}" placeholder="Data"/>
+						</p:panelGrid>
+						<br/>
+						
+						<p:commandButton value="Incluir" 
+							actionListener="#{entradaEstoqueController.insert}" 
+							disabled="#{entradaEstoqueController.entity.id != null}"
+							process="panel" update="form" />
+						
+						<p:commandButton value="Alterar" 
+							actionListener="#{entradaEstoqueController.update}" 
+							disabled="#{entradaEstoqueController.entity.id == null}"
+							process="panel" update="form" />
+				
+						<p:commandButton value="Excluir" 
+							actionListener="#{entradaEstoqueController.delete}" 
+							disabled="#{entradaEstoqueControllerr.entity.id == null}"	
+							process="panel" update="form" />
+						
+						<p:commandButton value="Limpar" icon="" 
+							actionListener="#{entradaEstoqueController.clean}" 
+							process="panel" update="form" />
+					</p:panel>
+						<br/>
+					<p:separator id="separator" />
+					<br/>
+
+				</h:form>
+			</center>	
+		</f:view>
+	</ui:define>
+</ui:composition>
