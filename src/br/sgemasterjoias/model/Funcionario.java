@@ -2,6 +2,8 @@ package br.sgemasterjoias.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +24,25 @@ public class Funcionario extends Model<Funcionario>{
 	@SequenceGenerator(name = "seqidfuncionario", sequenceName = "seqidfuncionario", allocationSize = 1)
 	private Integer id;
 	private String nome;
+	@Enumerated(value = EnumType.STRING)
+	private Permissao permissao;
+	
+	private Status status;
+	
 	public String getNome() {
 		return nome;
+	}
+	public Permissao getPermissao() {
+		return permissao;
+	}
+	public void setPermissao(Permissao permissao) {
+		this.permissao = permissao;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;

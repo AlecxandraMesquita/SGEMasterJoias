@@ -24,6 +24,21 @@
 							<p:inputText value="#{funcionarioController.entity.senha}" placeholder="Senha"/>
 			
 							<p:inputText value="#{funcionarioController.entity.salario}" placeholder="Salario"/>
+							
+							<p:selectOneMenu id = "status"
+								value = "#{funcionarioController.entity.status}">
+								<f:selectItem itemLabel= "Funcionario Ativo" itemValue = ""/>
+								<f:selectItems value ="#{funcionarioController.status}" var="st"
+									itemValue="#{st}" itemLabel = "#{st.nome}"/>
+							</p:selectOneMenu>
+							
+							<p:selectOneMenu id = "permissao"
+								value = "#{funcionarioController.entity.permissao}">
+								<f:selectItem itemLabel= "Permissão" itemValue = ""/>
+								<f:selectItems value ="#{funcionarioController.permissao}" var="p"
+									itemValue="#{p}" itemLabel = "#{p.nome}"/>
+							</p:selectOneMenu>
+							
 						</p:panelGrid>
 						<br/>
 						

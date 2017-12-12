@@ -11,7 +11,10 @@ import br.sgemasterjoias.factory.JPAFactory;
 //import br.sgemasterjoias.list.controller.FuncionarioListController;
 import br.sgemasterjoias.list.controller.PessoaListController;
 import br.sgemasterjoias.model.Funcionario;
+import br.sgemasterjoias.model.MaterialProduto;
+import br.sgemasterjoias.model.Permissao;
 import br.sgemasterjoias.model.Pessoa;
+import br.sgemasterjoias.model.Status;
 import br.sgemasterjoias.repository.ClienteRepository;
 import br.sgemasterjoias.repository.FuncionarioRepository;
 import br.sgemasterjoias.repository.PessoaRepository;
@@ -115,4 +118,12 @@ public class FuncionarioController extends Controller<Funcionario>{
 			}
 		});
 	}
+	
+	public Status[] getStatus(){
+		return Status.values();
+   }
+	
+	public Permissao[] getPermissao(){
+		return Permissao.values();
+    }
 }
