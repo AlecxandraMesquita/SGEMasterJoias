@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<div class="menu">
+		<h:form>
+			<p:menu toggleable="true">
+
+				<p:submenu label="#{funcionarioController.funcionarioLogado.nome}">				
+					
+					<p:menuitem title="Entre em Contato"
+						url="/publico/EnviarEmail.xhtml" value="Entrar em contato"
+						icon="fa fa-envelope" />
+					<p:separator />
+					<p:menuitem
+						onclick="document.location='#{request.contextPath}/j_spring_security_logout'"
+						actionListener="#{funcionarioController.logout}" title="Sair"
+						value="Sair" icon="fa fa-sign-out" />
+				</p:submenu>
+				
+				<p:submenu label="Pessoas">
+					<p:menuitem value="Cadastrar" icon="ui-icon-disk"
+						url="/admin/Pessoa.xhtml" />
+					<p:menuitem value="Funcionario" icon="ui-icon-disk"
+						url="/admin/funcionario.xhtml" />
+					<p:menuitem value="Cliente" url="/admin/cliente.xhtml"
+						icon="ui-icon-disk" />
+					
+				</p:submenu>
+
+				<p:submenu label="Produtos">
+					<p:menuitem value="Gerenciar" ajax="false" icon="ui-icon-disk"
+						url="/restrito/Produto.xhtml" />
+					<p:menuitem value="Marca" icon="ui-icon-disk"
+						url="/restrito/Marca.xhtml" />
+					<p:menuitem value="Tipo" icon="ui-icon-disk"
+						url="/restrito/TipoProduto.xhtml" />
+				</p:submenu>
+
+				<p:submenu label="Estoque">
+					<p:menuitem value="Entrada" ajax="false" icon="ui-icon-disk"
+						url="/restrito/EntradaEstoque.xhtml" />
+					<p:menuitem value="Ajuste de Estoque" ajax="false"
+						icon="ui-icon-disk" url="/restrito/AjusteEstoque.xhtml" />
+					<p:menuitem value="Estoque" ajax="false" icon="ui-icon-disk"
+						url="/restrito/Estoque.xhtml" />
+					<p:menuitem value="Novo" ajax="false" url="/restrito/Produto.xhtml"
+						icon="ui-icon-disk" />
+				</p:submenu>
+
+				<p:submenu label="Venda">
+					<p:menuitem value="Gerenciar" ajax="false" icon="ui-icon-disk" />
+					<p:menuitem value="Nova Venda" ajax="false" />
+					<p:menuitem value="Relatório" ajax="false"
+						url="/restrito/Produto.xhtml" icon="ui-icon-disk" />
+				</p:submenu>
+			</p:menu>
+
+		</h:form>
+	</div>
+</ui:composition>

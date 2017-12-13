@@ -13,6 +13,7 @@ import br.sgemasterjoias.model.MaterialProduto;
 import br.sgemasterjoias.model.Pessoa;
 import br.sgemasterjoias.model.TipoPessoa;
 import br.sgemasterjoias.repository.PessoaRepository;
+import br.sgemasterjoias.util.Report;
 import br.sgemasterjoias.validation.PessoaValidation;
 import br.unitins.frame.controller.Controller;
 import br.unitins.frame.validation.Validation;
@@ -22,6 +23,14 @@ import br.unitins.frame.validation.Validation;
 public class PessoaController extends Controller<Pessoa>{
 	
 	private List<Pessoa> listaPessoa;
+	
+	 private Report relatorio;
+
+	 public Report getRelatorio() {
+		 if (relatorio == null)
+		 relatorio = new Report("jdbc/masterjoias", "reports", "RelatorioPessoas");
+		 return relatorio;
+	 }
 
 	@Override
 	protected EntityManager getEntityManager() {

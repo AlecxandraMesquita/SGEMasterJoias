@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
@@ -31,7 +33,7 @@ public class FuncionarioController extends Controller<Funcionario>{
 	private List<Funcionario> listaFuncionario;
 	private List<Pessoa> listaPessoa;
 	private Funcionario funcionario;
-	
+	private Funcionario funcionarioLogado;
 	@Override
 	protected EntityManager getEntityManager() {
 		
@@ -126,4 +128,17 @@ public class FuncionarioController extends Controller<Funcionario>{
 	public Permissao[] getPermissao(){
 		return Permissao.values();
     }
+	
+	public Funcionario getFuncionarioLogado() {
+		FuncionarioRepository repo = new FuncionarioRepository(JPAFactory.getEntityManager());
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext external = context.getExternalContext();
+		funcionarioLogado = repo.buscarUFuncionarioPorCPF(external.getRemoteUser());
+		return funcionarioLogado;
+	}
+
+	public void setFuncionarioLogado(Funcionario funcionarioLogado) {
+		this.funcionarioLogado = funcionarioLogado;
+	}
+	
 }

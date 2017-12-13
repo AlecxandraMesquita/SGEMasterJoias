@@ -2,7 +2,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/restrito/template.xhtml">
 
 <ui:define name="conteudo">
 
@@ -51,6 +51,16 @@
 		<br/>
 		<p:separator id="separator" />
 		<br/>
+		
+			<h:outputText value="Click no PDF para gerar o relatório dos procedimentos:" />
+			<div  style="top: 100px;">
+			<h:commandLink >
+			<p:fileDownload value="#{pessoaController.relatorio.pdf}" />
+			<p:graphicImage library="img" name="pdf.png" title="Imprimir PDF"/>
+			</h:commandLink>
+			</div>
+			<br/>
+		 <p:separator />
 		
 		<p:dataTable id="dataTable" value="#{pessoaController.listaPessoa}" var="objeto" widgetVar="dataTableWV" >	
 			<p:column>

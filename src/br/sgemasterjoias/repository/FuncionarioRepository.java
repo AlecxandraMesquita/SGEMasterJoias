@@ -1,13 +1,18 @@
 package br.sgemasterjoias.repository;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.sgemasterjoias.model.Funcionario;
 import br.sgemasterjoias.model.Pessoa;
+import br.unitins.frame.application.Session;
+import br.unitins.frame.application.Util;
 import br.unitins.frame.repository.Repository;
 
 public class FuncionarioRepository extends Repository<Funcionario>{
@@ -58,5 +63,14 @@ public class FuncionarioRepository extends Repository<Funcionario>{
 
 		return funcionario;
 	}
+	public Funcionario buscarUFuncionarioPorCPF(String CPF) {
+		TypedQuery<Funcionario> query = geEntityManager().createQuery("SELECT f FROM Funcionario f WHERE f.pessoa.cpf = :CPF", Funcionario.class);
 
+		return query.setParameter("CPF", CPF).getSingleResult();
+		}
+	
+	public void logout(ActionEvent actionEvent) {
+		Session.encerrarSessao();
+		Util.redirect("login.xhtml");
+	}
 }
