@@ -69,8 +69,5 @@ public class FuncionarioRepository extends Repository<Funcionario>{
 		return query.setParameter("CPF", CPF).getSingleResult();
 		}
 	
-	public void logout(ActionEvent actionEvent) {
-		Session.encerrarSessao();
-		Util.redirect("login.xhtml");
-	}
+	
 }

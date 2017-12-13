@@ -8,65 +8,112 @@
 	
 		<f:view>
 			<center>
-		
+
 				<h:form id="form">
-					<p:growl id="growl" showDetail="false" sticky="false"  life="5000" /> 
+					<p:growl id="growl" showDetail="false" sticky="false" life="5000" />
 					<p:panel id="panel" header="Cadastro de Funcionário">
 						<p:panelGrid id="pgDados" columns="2" styleClass="semBorda">
-																	 
+
 							<p:commandLink value="Nome:"
 								actionListener="#{funcionarioController.abrirListPessoa}">
 								<p:ajax event="dialogReturn" update="form" />
 							</p:commandLink>
 
-							<p:inputText value="#{funcionarioController.entity.pessoa.nome}" placeholder="Nome" disabled="true"/>
-							
-							<p:inputText value="#{funcionarioController.entity.senha}" placeholder="Senha"/>
-			
-							<p:inputText value="#{funcionarioController.entity.salario}" placeholder="Salario"/>
-							
-							<p:selectOneMenu id = "status"
-								value = "#{funcionarioController.entity.status}">
-								<f:selectItem itemLabel= "Funcionario Ativo" itemValue = ""/>
-								<f:selectItems value ="#{funcionarioController.status}" var="st"
-									itemValue="#{st}" itemLabel = "#{st.nome}"/>
+							<p:inputText value="#{funcionarioController.entity.pessoa.nome}"
+								placeholder="Nome" disabled="true" />
+
+							<p:inputText value="#{funcionarioController.entity.senha}"
+								placeholder="Senha" />
+
+							<p:inputText value="#{funcionarioController.entity.salario}"
+								placeholder="Salario" />
+
+							<p:selectOneMenu id="status"
+								value="#{funcionarioController.entity.status}">
+								<f:selectItem itemLabel="Funcionario Ativo" itemValue="" />
+								<f:selectItems value="#{funcionarioController.status}" var="st"
+									itemValue="#{st}" itemLabel="#{st.nome}" />
 							</p:selectOneMenu>
-							
-							<p:selectOneMenu id = "permissao"
-								value = "#{funcionarioController.entity.permissao}">
-								<f:selectItem itemLabel= "Permissão" itemValue = ""/>
-								<f:selectItems value ="#{funcionarioController.permissao}" var="p"
-									itemValue="#{p}" itemLabel = "#{p.nome}"/>
+
+							<p:selectOneMenu id="permissao"
+								value="#{funcionarioController.entity.permissao}">
+								<f:selectItem itemLabel="Permissão" itemValue="" />
+								<f:selectItems value="#{funcionarioController.permissao}"
+									var="p" itemValue="#{p}" itemLabel="#{p.nome}" />
 							</p:selectOneMenu>
-							
+
 						</p:panelGrid>
-						<br/>
-						
-						<p:commandButton value="Incluir" 
-							actionListener="#{funcionarioController.insert}" 
+						<br />
+
+						<p:commandButton value="Incluir"
+							actionListener="#{funcionarioController.insert}"
 							disabled="#{funcionarioController.entity.id != null}"
 							process="panel" update="form" />
-						
-						<p:commandButton value="Alterar" 
-							actionListener="#{funcionarioController.update}" 
+
+						<p:commandButton value="Alterar"
+							actionListener="#{funcionarioController.update}"
 							disabled="#{funcionarioController.entity.id == null}"
 							process="panel" update="form" />
-				
-						<p:commandButton value="Excluir" 
-							actionListener="#{funcionarioController.delete}" 
-							disabled="#{funcionarioController.entity.id == null}"	
+
+						<p:commandButton value="Excluir"
+							actionListener="#{funcionarioController.delete}"
+							disabled="#{funcionarioController.entity.id == null}"
 							process="panel" update="form" />
-						
-						<p:commandButton value="Limpar" icon="" 
-							actionListener="#{funcionarioController.clean}" 
-							process="panel" update="form" />
+
+						<p:commandButton value="Limpar" icon=""
+							actionListener="#{funcionarioController.clean}" process="panel"
+							update="form" />
 					</p:panel>
-						<br/>
+					<br />
 					<p:separator id="separator" />
-					<br/>
-					
+					<br />
+					<p:dataTable id="dataTable"
+						value="#{funcionarioController.listaFuncionario}" var="objeto"
+						widgetVar="dataTableWV">
+						<p:column>
+							<f:facet name="header">Nome</f:facet>
+	    					#{objeto.pessoa.nome}
+	    				</p:column>
+						<p:column>
+							<f:facet name="header">Telefone</f:facet>
+	    					#{objeto.pessoa.telefone}
+	    				</p:column>
+						<p:column>
+							<f:facet name="header">CPF</f:facet>
+	    					#{objeto.pessoa.cpf}
+	    				</p:column>
+						<p:column>
+							<f:facet name="header">RG</f:facet>
+	    					#{objeto.pessoa.rg}
+	    				</p:column>
+						<p:column>
+							<f:facet name="header">E-mail</f:facet>
+	    					#{objeto.pessoa.email}
+	    				</p:column>
+						<p:column>
+							<f:facet name="header">Salario</f:facet>
+	    					#{objeto.salario}
+	    				</p:column>
+	    				<p:column>
+							<f:facet name="header">Status</f:facet>
+	    					#{objeto.status}
+	    				</p:column>
+	    				<p:column>
+							<f:facet name="header">Permissão</f:facet>
+	    					#{objeto.permissao}
+	    				</p:column>
+	    				
+						<p:column>
+							<f:facet name="header">Ação</f:facet>
+							<p:commandButton value="Editar" update="form" icon="fa fa-bug">
+								<f:setPropertyActionListener
+									target="#{funcionarioController.entity}" value="#{objeto}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
 				</h:form>
-			</center>	
+			</center>
 		</f:view>
 	</ui:define>
 </ui:composition>

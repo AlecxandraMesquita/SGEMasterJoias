@@ -63,10 +63,7 @@
 		 <p:separator />
 		
 		<p:dataTable id="dataTable" value="#{pessoaController.listaPessoa}" var="objeto" widgetVar="dataTableWV" >	
-			<p:column>
-				<f:facet name="header">Id</f:facet>
-	    				#{objeto.id}
-	    		</p:column>
+		
 			<p:column >
 				<f:facet name="header">Nome</f:facet>
 	    				#{objeto.nome}

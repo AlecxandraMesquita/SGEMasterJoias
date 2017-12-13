@@ -22,10 +22,9 @@ public class Estoque extends Model<Estoque>{
 	private Integer id;
 	private Integer quantidadeProduto;
 	//private String nome;
-	
+	@ManyToOne(cascade = CascadeType.ALL)
 	private EntradaEstoque entrada;
 	private AjusteEstoque ajuste;
-	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idproduto", nullable = false, unique = true)
 	private Produto produto;
 	
@@ -79,6 +78,5 @@ public class Estoque extends Model<Estoque>{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 }

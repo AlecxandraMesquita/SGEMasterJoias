@@ -1,0 +1,147 @@
+/* BOTÕES */
+.m-button {
+	background-color: #F27E22 !important;
+	background-image: none !important;
+	border: none !important;
+	
+	color: #fff !important;
+	text-shadow: none !important;
+}
+
+.m-button:hover {
+	background-color: #F8B27E !important;
+	box-shadow: none !important;
+	color: #DC5412 !important;
+}
+
+.m-button:focus {
+	box-shadow: none;
+}
+
+.m-button:disabled {
+	opacity: 1;
+	background-color: #FDE6D5 !important;
+	color: #fff !important;
+	border: none !important;
+}
+/* FIM BOTÕES */
+
+
+
+/* CAMPOS */
+.m-input {
+	box-shadow: none !important;
+	background-color: #e6e6e6 !important;
+	border: none !important;
+	border-bottom: 2px solid #B3B3B3 !important;
+	border-radius: 0;
+}
+
+.m-input:hover {
+	border-color: #FFBB00 !important;
+}
+
+.m-input:focus {
+	border-color: #F27E22 !important;
+	background-color: #FDE6D5 !important;
+}
+/* FIM CAMPOS */
+
+
+
+/* SELECT */
+.m-select {
+	border: none !important;
+	border-radius: 0;	
+	border-bottom: 2px solid #B3B3B3 !important;
+	box-shadow: none !important;
+}
+
+.m-select:hover {
+	border-color: #FFBB00 !important;
+}
+
+.m-select.ui-state-focus {
+	border-color: #F27E22 !important;
+}
+
+.m-select .ui-selectonemenu-label {
+	background-color: #e6e6e6 !important;
+	border-radius: 0;	
+	box-shadow: none !important;
+}
+
+.m-select .ui-selectonemenu-trigger {
+	background-color: #F27E22 !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.m-select .ui-selectonemenu-trigger > span {
+	filter: grayscale(100%) brightness(500%);
+}
+
+li.ui-state-highlight {
+	background-image: none !important;
+	background-color: #F27E22 !important;	
+	border: none !important;
+	text-shadow: none !important;
+}
+
+li.ui-state-hover {
+	color: #DC5412 !important;
+	background-image: none !important;
+	background-color: #F8B27E !important;	
+	border: none !important;
+	text-shadow: none !important;
+}
+/* FIM SELECT */
+
+
+
+/* ALINHAMENTO DE TEXTO / ALINHANDO OS CAMPOS */
+.m-text-left {
+	text-align: left !important;
+}
+/* FIM ALINHAMENTO DE TEXTO / ALINHANDO OS CAMPOS */
+
+
+
+/* CONTROLES DE RESPONSIVIDADE */
+.m-width-100 {width: 100%;}
+.m-width-95 {width: 95%;}
+.m-width-80 {width: 80%;}
+.m-width-50 {width: 50%;}
+
+.m-select-width-95.ui-selectonemenu {width: 95%;}
+
+@media (max-width: 640px) {
+    .rodape {
+        font-size: 10pt;
+        height: 36px;
+    }
+}
+/* FIM CONTROLES DE RESPONSIVIDADE */
+
+
+
+/* DATATABLE */
+.ui-datatable .ui-datatable-header {
+	background-color: #F27E22 !important;
+	background-image: none !important;
+	color: #fff !important;
+	text-shadow: none !important;
+}
+
+.ui-datatable-tablewrapper th {
+	background-color: #F8B27E !important;
+	background-image: none !important;
+	color: #DC5412 !important;
+	text-shadow: none !important;
+}
+
+.ui-datatable-odd {
+	background-color: #FDE6D5 !important;
+}
+/* FIM DATATABLE */

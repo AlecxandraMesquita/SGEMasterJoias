@@ -82,7 +82,7 @@ public class ProdutoController extends Controller<Produto>{
 
 	public void setListaTipoProduto(List<TipoProduto> listaTipoProduto) {
 		this.listaTipoProduto = listaTipoProduto;
-}
+	}
 
 	
 	public List<Marca> getListaMarca() {

@@ -22,6 +22,8 @@ import br.sgemasterjoias.repository.FuncionarioRepository;
 import br.sgemasterjoias.repository.PessoaRepository;
 import br.sgemasterjoias.validation.FuncionarioValidation;
 import br.unitins.frame.application.SelectionListener;
+import br.unitins.frame.application.Session;
+import br.unitins.frame.application.Util;
 import br.unitins.frame.controller.Controller;
 import br.unitins.frame.validation.Validation;
 
@@ -130,15 +132,20 @@ public class FuncionarioController extends Controller<Funcionario>{
     }
 	
 	public Funcionario getFuncionarioLogado() {
-		FuncionarioRepository repo = new FuncionarioRepository(JPAFactory.getEntityManager());
+		FuncionarioRepository repository = new FuncionarioRepository(JPAFactory.getEntityManager());
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext external = context.getExternalContext();
-		funcionarioLogado = repo.buscarUFuncionarioPorCPF(external.getRemoteUser());
+		funcionarioLogado = repository.buscarUFuncionarioPorCPF(external.getRemoteUser());
 		return funcionarioLogado;
 	}
 
 	public void setFuncionarioLogado(Funcionario funcionarioLogado) {
 		this.funcionarioLogado = funcionarioLogado;
+	}
+	
+	public void logout(ActionEvent actionEvent) {
+		Session.encerrarSessao();
+		Util.redirect("login.xhtml");
 	}
 	
 }

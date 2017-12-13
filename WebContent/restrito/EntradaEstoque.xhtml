@@ -23,7 +23,11 @@
 							
 							<p:inputText value="#{entradaEstoqueController.entity.quantidade}" placeholder="Quantidade"/>
 			
-							<p:inputText value="#{entradaEstoqueController.entity.dataEntrada}" placeholder="Data"/>
+							<p:calendar id="entrada"
+								value="#{entradaEstoqueController.entity.dataEntrada}" locale="br"
+								pattern="dd/MM/yyyy" timeZone="America/Araguaina" mask="true"
+								placeholder="Data da entrada" />
+
 						</p:panelGrid>
 						<br/>
 						
