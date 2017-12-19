@@ -3,6 +3,7 @@
 
 <p>Projeto do sistema para a gestão do estoque e das vendas da joalheria master joias</p>
 
+<h2>Contribuidores</h2>
 <ul>
     <li><a href="https://github.com/AlecxandraMesquita">Alexcandra Mesquita</a></li>
     <li><a href="https://github.com/BersonCrios">Guilherme Berson</a></li>
